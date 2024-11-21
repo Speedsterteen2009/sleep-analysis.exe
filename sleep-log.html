@@ -1,0 +1,67 @@
+<!-- sleep-log.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log Sleep | Sleep App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Log Your Sleep</h1>
+  </header>
+  <main>
+    <form id="sleep-log-form">
+      <label for="sleep-date">Date:</label>
+      <input type="date" id="sleep-date" required>
+      
+      <label for="sleep-start">Sleep Start Time:</label>
+      <input type="time" id="sleep-start" required>
+      
+      <label for="sleep-end">Sleep End Time:</label>
+      <input type="time" id="sleep-end" required>
+
+      <label for="sleep-quality">Sleep Quality (1-5):</label>
+      <input type="number" id="sleep-quality" min="1" max="5" required>
+
+      <button type="submit">Log Sleep</button>
+    </form>
+    <p id="log-message"></p>
+  </main>
+  
+  <script src="sleep-log.js"></script>
+</body>
+</html>
+// sleep-log.js
+document.getElementById("sleep-log-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const sleepDate = document.getElementById("sleep-date").value;
+  const sleepStart = document.getElementById("sleep-start").value;
+  const sleepEnd = document.getElementById("sleep-end").value;
+  const sleepQuality = document.getElementById("sleep-quality").value;
+
+  // Check for empty fields
+  if (!sleepDate || !sleepStart || !sleepEnd || !sleepQuality) {
+    document.getElementById("log-message").textContent = "Please fill all fields.";
+    return;
+  }
+
+  const sleepData = {
+    date: sleepDate,
+    start: sleepStart,
+    end: sleepEnd,
+    quality: sleepQuality
+  };
+
+  // Get existing logs from localStorage
+  let logs = JSON.parse(localStorage.getItem("sleepLogs")) || [];
+
+  // Save the new log entry
+  logs.push(sleepData);
+  localStorage.setItem("sleepLogs", JSON.stringify(logs));
+
+  // Display success message
+  document.getElementById("log-message").textContent = "Sleep log saved!";
+});

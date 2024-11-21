@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleep Analysis App</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Sleep Analysis App 🌙</h1>
+    <button id="theme-toggle">Switch to Light Mode</button>
+  </header>
+
+  <main>
+    <section id="form">
+      <h2>Log Your Sleep</h2>
+      <form id="sleep-form">
+        <label for="sleep-time">Sleep Time:</label>
+        <input type="time" id="sleep-time" required>
+
+        <label for="wake-time">Wake Time:</label>
+        <input type="time" id="wake-time" required>
+
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <section id="stats">
+      <h2>Your Sleep Stats</h2>
+      <p id="stats-message">Log your sleep to see results!</p>
+      <ul id="stats-list"></ul>
+      <button id="clear-data">Reset All Data</button>
+    </section>
+
+    <section id="graph">
+      <h2>Sleep Graphs</h2>
+      <canvas id="sleepChart"></canvas>
+      <canvas id="distributionChart"></canvas>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
